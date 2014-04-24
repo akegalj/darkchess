@@ -11,8 +11,8 @@
       $forall (num, Entity gk g, xs) <- gameMoves
         <tr :xor (gameUserA g == k) (even $ length xs):.info onclick="window.location.href = '@{BoardR gk}'">
           <td>#{show num}
-          <td>#{findUserName $ Just $ gameUserA g}
-          <td>#{findUserName $ gameUserB g}
+          <td>#{emailName $ findUserName $ Just $ gameUserA g}
+          <td>#{emailName $ findUserName $ gameUserB g}
           <td>#{show $ flip (-) 1 $ length $ xs}
           <td>
             <i .icon-th>

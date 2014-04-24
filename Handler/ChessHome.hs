@@ -5,6 +5,7 @@ import Import
 import Yesod.Auth
 import Data.List
 import Text.Julius
+import qualified Data.Text as T
 
 notLoggedIn = "Must be logged in!"
 notYourGame = "This is not your game!"
@@ -30,6 +31,7 @@ getGameListR = do
         users <- runDB $ selectList [] []
         let gameMoves = zip3 [1..] games moves
             findUserName mu = head . map (userIdent . entityVal) $ filter ((== mu) . Just . entityKey) users
+            emailName = head . T.split (=='@')
         defaultLayout $ do
           setTitle "Dark Chess - game list"
           $(widgetFile "gamelist")
