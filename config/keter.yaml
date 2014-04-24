@@ -1,0 +1,9 @@
+exec: ../dist/build/darkchess/darkchess
+
+stanzas:
+  - type: webapp
+    exec: ../dist/build/darkchess/darkchess
+    args:
+      - production
+    host: 188.226.163.51:2500
+

@@ -1,0 +1,30 @@
+<h1>Dark chess
+
+<div .row>
+    <p>This is little <a href="http://en.wikipedia.org/wiki/Chess">chess</a> variant which i had in mind implementing long time #
+      ago. I've tryed finding something like this on Internet but most variants #
+      are board based. In a short, it is a <a href="http://en.wikipedia.org/wiki/Fog_of_war">fog of war</a> #
+      concept brought into chess; also called <a href="http://en.wikipedia.org/wiki/Dark_chess">Dark Chess</a>. I read somewhere that having incomplete game state #
+      would ruin the game. I'm going to disagree on it; game will surely become #
+      slower and different but not necessarely worse. Let's try it out! #
+      <em>Fog of war chess</em> variant is disqused here:
+      <ol>
+        <li>
+          <a href="http://www.chess.com/forum/view/chess960-chess-variants/quotfog-of-warquot-chess-variation">chess.com
+        <li>
+          <a href="http://www.chessvariants.org/incinf.dir/darkness.html">dark chess game
+
+    <p> There will be few variants of <em>fog of war</em> concept. List below is #
+      incomplete and hopefully will become larger:
+      <ol>
+        <li> variantA: Players don't see full game state off it's opponent, but only #
+          squares which they own and squares where they can move pieces.
+        <li> ... (<em>will be extended</em>)
+
+    <p> <em>Notice:</em> this page is draft and created in one day so don't hate me! I will not #
+          use your email information in any evil way; email is only for simplicity of crafting #
+          page out. There will surely be bugs so feel free to inform me via <a href="mailto:akegalj@gmail.com">email</a> #
+          or via <em>Disqus</em> at the bottom of page. Moves are not <em>live</em> so you will #
+          need to reload your wab page if you want to play live game. If there will be enough #
+          interest I'll implement this right.
+

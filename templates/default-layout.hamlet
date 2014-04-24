@@ -1,0 +1,14 @@
+<div .row>
+  <div .pull-right .offset1>
+    ^{apLogin authGoogleEmail AuthR}
+  <div .pull-right .offset1>
+    <a href=@{GameListR}>
+      <b>Game list
+  <div .pull-right .offset1>
+    <a href=@{ChessHomeR}>Home
+
+$maybe msg <- mmsg
+  <div .row>
+    <div .alert .span8 .offset2>
+      #{msg}
+^{widget}

@@ -1,0 +1,7 @@
+<div .row .padding-top80>
+  <div .span6 .offset3>
+    <p>
+      <b>Status:
+      <span #status>
+    <div #board>
+

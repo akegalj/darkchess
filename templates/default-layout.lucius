@@ -1,0 +1,13 @@
+.padding-top80 {
+  padding-top: 80px;
+}
+
+.center-table-last {
+  th:last-child,td:last-child {
+    text-align: center;
+  }
+}
+
+p {
+  margin-top: 30px;
+}

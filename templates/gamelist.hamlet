@@ -1,0 +1,20 @@
+<div .row .padding-top80>
+  <table .table .center-table-last>
+    <thead>
+      <tr>
+        <th>##
+        <th>White
+        <th>Black
+        <th>Moves
+        <th>Board
+    <tbody>
+      $forall (num, Entity gk g, xs) <- gameMoves
+        <tr :xor (gameUserA g == k) (even $ length xs):.info>
+          <td>#{show num}
+          <td>#{findUserName $ Just $ gameUserA g}
+          <td>#{findUserName $ gameUserB g}
+          <td>#{show $ flip (-) 1 $ length $ xs}
+          <td>
+            <a href=@{BoardR gk}>
+              <i .icon-th>
+
