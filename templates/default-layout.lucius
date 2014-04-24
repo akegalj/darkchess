@@ -6,6 +6,9 @@
   th:last-child,td:last-child {
     text-align: center;
   }
+  tr:hover {
+    cursor: pointer;
+  }
 }
 
 p {
