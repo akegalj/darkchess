@@ -1,11 +1,15 @@
 <div .row>
-  <div .pull-right .offset1>
-    ^{apLogin authGoogleEmail AuthR}
-  <div .pull-right .offset1>
-    <a href=@{GameListR}>
-      <b>Game list
-  <div .pull-right .offset1>
-    <a href=@{ChessHomeR}>Home
+  <div .span8 .offset2>
+    $case mroute
+      $of Just ChessHomeR
+      $of _
+        <span .offset1>
+          <a href=@{ChessHomeR}>Home
+    <span .offset1>
+      <a href=@{GameListR}>
+        <b>Game list
+    <span .offset1>
+      ^{apLogin authGoogleEmail AuthR}
 
 $maybe msg <- mmsg
   <div .row>
