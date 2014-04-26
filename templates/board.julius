@@ -2,9 +2,11 @@ var board,
   game,
   statusEl = $('#status')
 
-var removeGreySquares = function() {
+var removeGreySquares = function(allMoves) {
   for (var i = 0; i < allMoves.length; i++) {
-    $('#board .square-' + allMoves[i]).css('background', '');
+    var squareEl = $('#board .square-' + allMoves[i])
+    squareEl.find('img').show();
+    squareEl.css('background', '');
   }
 };
 
@@ -21,7 +23,7 @@ var greySquare = function(square) {
 
 var makeFogSquares = function(square) {
   var squareEl = $('#board .square-' + square);
-  squareEl.find('img').remove();
+  squareEl.find('img').hide();
   
   var background = '#646464';
   if (squareEl.hasClass('black-3c85d') === true) {
@@ -45,7 +47,7 @@ var onDragStart = function(source, piece, position, orientation) {
 };
 
 var onDrop = function(source, target) {
-  removeGreySquares();
+  removeGreySquares(allMoves);
   // see if the move is legal
   var move = game.move({
     from: source,
@@ -104,21 +106,23 @@ var onMouseoverSquare = function(square, piece) {
 };
 
 var onMouseoutSquare = function(square, piece) {
-  removeGreySquares();
+  removeGreySquares(allMoves);
 };
 
 // update the board position after the piece snap 
 // for castling, en passant, pawn promotion
 var onSnapEnd = function() {
   board.position(game.fen());
-  fogMoves.map(makeFogSquares);
+  fogMap(allMoves)
 };
 
 var onSnapbackEnd = function() {
-  fogMoves.map(makeFogSquares);
+  fogMap(allMoves)
 }
 
 var updateStatus = function() {
+  allMoves = getAllMoves(game.fen())
+  fogMap(allMoves)
   var status = '';
 
   var moveColor = 'White';
@@ -149,6 +153,12 @@ var updateStatus = function() {
   statusEl.html(status);
 };
 
+var fogMap = function(allMoves) {
+  var fogMoves = _.difference(game.SQUARES, allMoves);
+  fogMoves.map(makeFogSquares);
+  removeGreySquares(allMoves)
+}
+
 var myColor = "#{rawJS color}"[0]
 var fen = "#{rawJS $ moveFen $ entityVal move}"
 
@@ -169,7 +179,5 @@ board = new ChessBoard('board', cfg);
 game = new Chess(fen);
 
 var allMoves = getAllMoves(fen);
-var fogMoves = _.difference(game.SQUARES, allMoves);
-fogMoves.map(makeFogSquares);
 
 updateStatus();
