@@ -60,7 +60,11 @@ var onDrop = function(source, target) {
   $.post("@{BoardR gid}", { fen: game.fen() });
 };
 
-var getAllMoves = function() {
+var getAllMoves = function(fen) {
+  var fake_fen = fen.split(' ')
+  fake_fen[1] = myColor
+  var game = new Chess(fake_fen.join(' '))
+
   var squares = []
   for (var i = 0; i < game.SQUARES.length; i++) {
     if(game.get(game.SQUARES[i]) !== null && game.get(game.SQUARES[i]).color === myColor) {
@@ -147,9 +151,6 @@ var updateStatus = function() {
 
 var myColor = "#{rawJS color}"[0]
 var fen = "#{rawJS $ moveFen $ entityVal move}"
-var fake_fen = fen.split(' ')
-fake_fen[1] = myColor
-var old_fen = fake_fen.join(' ')
 
 var cfg = {
   showNotation: false,
@@ -165,11 +166,10 @@ var cfg = {
   onMoveEnd: onSnapbackEnd,
 };
 board = new ChessBoard('board', cfg);
-game = new Chess(old_fen);
+game = new Chess(fen);
 
-var allMoves = getAllMoves();
+var allMoves = getAllMoves(fen);
 var fogMoves = _.difference(game.SQUARES, allMoves);
 fogMoves.map(makeFogSquares);
 
-game.load(fen)
 updateStatus();
