@@ -7,6 +7,7 @@ var removeGreySquares = function(allMoves) {
     var squareEl = $('#board .square-' + allMoves[i])
     squareEl.find('img').show();
     squareEl.css('background', '');
+    squareEl.removeClass("highlight-#{rawJS color}")
   }
 };
 
@@ -20,6 +21,12 @@ var greySquare = function(square) {
 
   squareEl.css('background', background);
 };
+
+var highlightSquare = function(square) {
+  var squareEl = $('#board .square-' + square);
+  squareEl.addClass("highlight-#{rawJS color}")
+};
+
 
 var makeFogSquares = function(square) {
   var squareEl = $('#board .square-' + square);
@@ -86,7 +93,7 @@ var getAllMoves = function(fen) {
 
 
 var onMouseoverSquare = function(square, piece) {
-  if(game.turn() !== "#{rawJS color}"[0]) return false;
+  if(game.turn() !== myColor) return false;
   // get list of possible moves for this square
   var moves = game.moves({
     square: square,
@@ -97,11 +104,11 @@ var onMouseoverSquare = function(square, piece) {
   if (moves.length === 0) return;
 
   // highlight the square they moused over
-  greySquare(square);
+  highlightSquare(square);
 
   // highlight the possible squares for this piece
   for (var i = 0; i < moves.length; i++) {
-    greySquare(moves[i].to);
+    highlightSquare(moves[i].to);
   }
 };
 
