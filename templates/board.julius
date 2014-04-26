@@ -153,6 +153,25 @@ var updateStatus = function() {
   statusEl.html(status);
 };
 
+var defined = function(x) {return x !== undefined}
+var getLocalSquaresHW = function(square) {
+  var squareIndex = _.indexOf(game.SQUARES,square)
+  var upIndex = squareIndex - 8
+  var downIndex = squareIndex + 8
+  var leftIndex = (squareIndex%8 !== 0)?squareIndex-1:undefined
+  var rightIndex = (squareIndex%8 !== 7)?squareIndex+1:undefined
+  return _([upIndex, downIndex, leftIndex, rightIndex]).filter(defined).map(function(x){return game.SQUARES[x]}).filter(defined)
+}
+
+var getLocalSquaresHWD = function(square) {
+  var squareIndex = _.indexOf(game.SQUARES,square)
+  var upLeftIndex = (squareIndex%8 !== 0)?squareIndex-9:undefined
+  var upRightIndex = (squareIndex%8 !== 7)?squareIndex-7:undefined
+  var downLeftIndex = (squareIndex%8 !== 0)?squareIndex+7:undefined
+  var downRightIndex = (squareIndex%8 !== 7)?squareIndex+9:undefined
+  return _([upLeftIndex, upRightIndex, downLeftIndex, downRightIndex]).filter(defined).map(function(x){return game.SQUARES[x]}).filter(defined).concat(getLocalSquaresHW(square))
+}
+
 var fogMap = function(allMoves) {
   var fogMoves = _.difference(game.SQUARES, allMoves);
   fogMoves.map(makeFogSquares);
